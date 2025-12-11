@@ -1,137 +1,81 @@
-# **CyberPatriot Linux Mint Hardening Script – Step by Step**
+This is a **Bash script**, so it runs on Linux systems (like your Linux Mint machine) via the terminal. Here's a safe step-by-step way to run it:
 
 ---
 
-## **Step 1 — Open the terminal**
+### **1. Save the script**
 
-* Click the **Terminal** icon in Linux Mint.
-
----
-
-## **Step 2 — Go to your home folder**
-
-Type:
+Save your script as a file, e.g.:
 
 ```bash
-cd ~
+mint_cyberpatriot_harden.sh
 ```
 
-* This puts you in `/home/<yourusername>/` which is safe.
+Make sure it’s saved **exactly as a `.sh` file**, not `.txt`.
 
 ---
 
-## **Step 3 — Create the script file**
+### **2. Make it executable**
 
-Type:
+Open a terminal in the directory where the script is saved, then run:
 
 ```bash
-nano cyber_guardian.sh
+chmod +x mint_cyberpatriot_harden.sh
 ```
 
-* This opens the text editor in the terminal.
+This gives it execution permission.
 
 ---
 
-## **Step 4 — Paste the script**
+### **3. Run in dry-run mode (recommended first!)**
 
-1. Copy the full script I gave you earlier.
-2. Right-click or **CTRL+SHIFT+V** in the terminal to paste it.
-3. Check that the first line starts with:
+The script has a `--dry-run` mode to **preview changes without actually applying them**.
 
 ```bash
-#!/usr/bin/env bash
+sudo ./mint_cyberpatriot_harden.sh --dry-run
 ```
 
----
-
-## **Step 5 — Save the file**
-
-* Press **CTRL + O** (this writes the file) → press **Enter**
-* Press **CTRL + X** (this exits nano)
+* `sudo` is required because the script modifies system files.
+* Check the output carefully to see what it *would* change.
 
 ---
 
-## **Step 6 — Make the script executable**
+### **4. Apply changes**
 
-Type:
+Once you are confident, run it with the `--apply` flag:
 
 ```bash
-chmod +x cyber_guardian.sh
+sudo ./mint_cyberpatriot_harden.sh --apply
 ```
 
-* This lets Linux run the script.
+This will make permanent system changes.
 
 ---
 
-## **Step 7 — Run a “dry run” first**
+### **5. Optional flags**
 
-Type:
+You can customize password policy or SSH port:
 
 ```bash
-sudo ./cyber_guardian.sh --dry-run
+sudo ./mint_cyberpatriot_harden.sh --apply --minlen 12 --remember 5 --min-days 2 --ssh-port 2222
 ```
 
-* This **doesn’t change anything**.
-* It shows **what the script would do**.
+* `--minlen N` → minimum password length
+* `--remember N` → number of previous passwords to remember
+* `--min-days N` → minimum password age
+* `--ssh-port PORT` → port allowed in UFW for SSH
 
 ---
 
-## **Step 8 — Apply the script**
+### **6. Check logs and backups**
 
-* If dry-run looks good, type:
+* Logs: `/var/log/cyberpatriot_harden_YYYYMMDD_HHMMSS.log`
+* Backups: `/root/cyberpatriot_backups_YYYYMMDD_HHMMSS/`
 
-```bash
-sudo ./cyber_guardian.sh --apply
-```
-
-* This actually makes the changes.
-* You may be asked for your **password** (the one for your current Linux user).
+You can restore any file from the backup if something goes wrong.
 
 ---
 
-## **Step 9 — Check backups**
+⚠️ **Important:**
 
-* The script makes backups in:
-
-```
-/root/cyberpatriot_backups_<timestamp>/
-```
-
-* Logs are in:
-
-```
-/var/log/cyberpatriot_harden_<timestamp>.log
-```
-
----
-
-## **Step 10 — Restore backups if something goes wrong**
-
-If the system breaks (like you can’t log in), use console or recovery mode:
-
-```bash
-sudo cp -r /root/cyberpatriot_backups_<timestamp>/* /
-```
-
-Then reboot:
-
-```bash
-sudo reboot
-```
-
----
-
-### ✅ **File names**
-
-* Script: `cyber_guardian.sh` **(not .txt!)**
-* Backups: automatically created in `/root/cyberpatriot_backups_<timestamp>/`
-* Log: `/var/log/cyberpatriot_harden_<timestamp>.log`
-
----
-
-### **Extra Tips**
-
-* Always run **dry-run first**
-* Keep the **VM snapshot** before applying
-* Run all commands **in order**
-* Only run in the **CyberPatriot competition VM**, not your personal computer
+* Running with `--apply` **modifies PAM files, SSH config, UFW rules, and system files**.
+* A misconfiguration could lock you out, especially from SSH. Always keep **root access or a console session** open.
