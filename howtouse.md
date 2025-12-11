@@ -7,7 +7,7 @@ This is a **Bash script**, so it runs on Linux systems (like your Linux Mint mac
 Save your script as a file, e.g.:
 
 ```bash
-mint_cyberpatriot_harden.sh
+linuxmint.sh
 ```
 
 Make sure it’s saved **exactly as a `.sh` file**, not `.txt`.
@@ -19,7 +19,7 @@ Make sure it’s saved **exactly as a `.sh` file**, not `.txt`.
 Open a terminal in the directory where the script is saved, then run:
 
 ```bash
-chmod +x mint_cyberpatriot_harden.sh
+chmod +x linuxmint.sh
 ```
 
 This gives it execution permission.
@@ -31,7 +31,7 @@ This gives it execution permission.
 The script has a `--dry-run` mode to **preview changes without actually applying them**.
 
 ```bash
-sudo ./mint_cyberpatriot_harden.sh --dry-run
+sudo ./linuxmint.sh --dry-run
 ```
 
 * `sudo` is required because the script modifies system files.
@@ -44,7 +44,7 @@ sudo ./mint_cyberpatriot_harden.sh --dry-run
 Once you are confident, run it with the `--apply` flag:
 
 ```bash
-sudo ./mint_cyberpatriot_harden.sh --apply
+sudo ./linuxmint.sh --apply
 ```
 
 This will make permanent system changes.
@@ -56,7 +56,7 @@ This will make permanent system changes.
 You can customize password policy or SSH port:
 
 ```bash
-sudo ./mint_cyberpatriot_harden.sh --apply --minlen 12 --remember 5 --min-days 2 --ssh-port 2222
+sudo ./linuxmint.sh --apply --minlen 12 --remember 5 --min-days 2 --ssh-port 2222
 ```
 
 * `--minlen N` → minimum password length
