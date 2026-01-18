@@ -66,13 +66,13 @@ Each section includes:
 Save the script as:
 
 ```bash
-mint_report.sh
+lmScript2
 ```
 
 ### 2. Make It Executable
 
 ```bash
-chmod +x mint_report.sh
+chmod +x lmScript2
 ```
 
 ### 3. Run the Script
@@ -80,7 +80,7 @@ chmod +x mint_report.sh
 Run as a normal user (sudo will be requested automatically where needed):
 
 ```bash
-./mint_report.sh
+./lmScript2
 ```
 
 ### 4. View the Report
