@@ -51,11 +51,10 @@ Ensure the script is saved locally, for example:
 hardening.sh
 
 ### 2️⃣ Make the Script Executable
-```bash
-chmod +x hardening.sh
+```chmod +x hardening.sh```
 3️⃣ Run as Root
 
 The script must be run with root privileges:
 
-sudo ./hardening.sh
+```sudo ./hardening.sh```
 
