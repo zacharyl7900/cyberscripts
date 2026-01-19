@@ -36,7 +36,11 @@ It removes unauthorized users and software, enforces strong authentication polic
 
 ### 📝 Logging & Reporting
 - Logs all actions to:
-~/  cyberpatriot_actions.log
+```
+
+~/cyberpatriot_actions.log
+
+```
 - Displays a final summary of:
 - Changes made
 - Items already secure
@@ -48,14 +52,103 @@ It removes unauthorized users and software, enforces strong authentication polic
 
 ### 1️⃣ Download or Place the Script
 Ensure the script is saved locally, for example:
+```
+
 hardening.sh
 
+````
+
 ### 2️⃣ Make the Script Executable
-```chmod +x hardening.sh```
+```bash
+chmod +x hardening.sh
+````
 
-3️⃣ Run as Root
+### 3️⃣ Run as Root
 
-The script must be run with root privileges:
+The script **must be run with root privileges**:
 
-```sudo ./hardening.sh```
+```bash
+sudo ./hardening.sh
+```
 
+---
+
+## Interactive Prompts
+
+* You will be prompted before any user account is deleted
+* Answer `y` to delete or `n` to skip
+* Skipped actions are logged and shown in the final summary
+
+---
+
+## Safety Checks
+
+The script **will not run** if any of the following critical files are missing:
+
+* `/etc/passwd`
+* `/etc/shadow`
+* `/etc/pam.d/common-password`
+* `/etc/pam.d/common-auth`
+* `/etc/ssh/sshd_config`
+
+This prevents accidental system damage.
+
+---
+
+## Requirements
+
+* Linux system using:
+
+  * `apt` / `dpkg`
+  * `ufw`
+  * `systemd`
+  * PAM authentication
+* Root or sudo access
+
+---
+
+## Warnings
+
+* User accounts may be permanently deleted
+* System configuration files are modified
+* Prohibited media files in `/home` are removed
+* Review the script before execution
+
+❌ Do **not** run on production systems without testing.
+
+---
+
+## Example Output
+
+After execution, a summary will display:
+
+* What was changed
+* What was already secure
+* What was skipped and why
+
+Full logs are stored at:
+
+```
+~/cyberpatriot_actions.log
+```
+
+---
+
+## Intended Use
+
+✔ CyberPatriot competitions
+✔ Training images and practice environments
+✔ Linux security hardening demonstrations
+
+---
+
+## License
+
+Educational and competition use only.
+No warranty — use at your own risk.
+
+---
+
+## Notes
+
+This script prioritizes **transparency, logging, and user control** while maximizing CyberPatriot scoring potential.
