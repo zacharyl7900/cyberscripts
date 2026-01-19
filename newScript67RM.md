@@ -52,6 +52,7 @@ hardening.sh
 
 ### 2️⃣ Make the Script Executable
 ```chmod +x hardening.sh```
+
 3️⃣ Run as Root
 
 The script must be run with root privileges:
